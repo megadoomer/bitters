@@ -58,7 +58,8 @@ module.exports = {
         ,syslog:{
              host:"localhost"
             ,port:undefined
-            ,app:process.title
+            ,app:process.title || 'alice:log'
+            ,identity:process.title || 'alice:log'
             ,protocol:'udp4'
             ,type:"BSD"
             ,facility:"local0"
