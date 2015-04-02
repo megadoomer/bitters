@@ -1,0 +1,19 @@
+{
+  "name": "alice-log",
+  "version": "0.1.0",
+  "description": "Multi transport logging for Alice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Satterwhite",
+  "license": "MIT",
+  "dependencies": {
+    "alice-conf": "^0.1.0",
+    "alice-stdlib": "^0.1.0",
+    "winston": "~0.8.0"
+  },
+  "optionalDependencies": {
+    "winston-posix-syslog": "0.0.7"
+  }
+}
