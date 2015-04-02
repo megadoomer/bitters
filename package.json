@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bugs":"https://bitbucket.org/team-umbrella/alice-log/issues",
   "author": "Eric Satterwhite",
   "license": "MIT",
   "dependencies": {
