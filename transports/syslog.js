@@ -2,7 +2,7 @@
 'use strict';
 /**
  * Winstons daily file log rotate transport
- * @module alice-log/transports/syslog
+ * @module hive-log/transports/syslog
  * @author Eric Satterwhite
  * @since 0.1.0
  * @requires winston

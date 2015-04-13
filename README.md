@@ -1,9 +1,9 @@
-## Alice Log
-A multi transport logging package for the alice platform. The logger can support any logger the implements the [winston](https://www.npmjs.org/package/winston) logging interface. Out of the box the logging package supports `file` transports for a log file that will get rotated every day, `stdout` which simply dumps all logs to the host computers stdout, and `syslog` which attempts to send logs to a running syslog server over udp.
+## hive Log
+A multi transport logging package for the hive platform. The logger can support any logger the implements the [winston](https://www.npmjs.org/package/winston) logging interface. Out of the box the logging package supports `file` transports for a log file that will get rotated every day, `stdout` which simply dumps all logs to the host computers stdout, and `syslog` which attempts to send logs to a running syslog server over udp.
 
 ### Configuration
 
-Logging options are set using the alice conf package so you can set you logging options as you would everything else. You use the `--logger` or `-l` the flag can be passed mutliple times to specify multiple transports. There is always an exception transport called `stderr` in the config that will always write to stdout For example, if you wanted to log to syslog, but also get feedback from stdout:
+Logging options are set using the hive conf package so you can set you logging options as you would everything else. You use the `--logger` or `-l` the flag can be passed mutliple times to specify multiple transports. There is always an exception transport called `stderr` in the config that will always write to stdout For example, if you wanted to log to syslog, but also get feedback from stdout:
 
 ```sh
 node server.js --logger=stdout --logger=syslog
@@ -32,7 +32,7 @@ The logging package exports a fully configured winston interface that supports s
 
 
 ```js
-var logger = require('alice-log')
+var logger = require('hive-log')
 logger.http('hello world')
 logger.debug('hello world')
 logger.info('hello world')
@@ -48,7 +48,7 @@ logger.emerg('hello world')
 The loggers suppport the same formatting options and Node's [util](http://nodejs.org/api/util.html#util_util_format_format) module.
 
 ```js
-var logger = require('alice-log');
+var logger = require('hive-log');
 
 logger.debug('Hi, %s, my name is %', "Bill", variable)
 ```
@@ -56,7 +56,7 @@ logger.debug('Hi, %s, my name is %', "Bill", variable)
 The last argument to any of the log method can be a serialiable object and it will be included in the log data in an appropriate format.
 
 ```js
-var logger = require('alice-log');
+var logger = require('hive-log');
 
 logger.debug("Dude, I just got some %s data", 'crazy', {key:'value'} )
 ```

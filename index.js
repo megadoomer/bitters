@@ -2,15 +2,15 @@
 /*globals module,process,require */
 'use strict';
 /**
- * primary logging harness for alice. Profides stdout, file and syslog logging by
+ * primary logging harness for hive. Profides stdout, file and syslog logging by
  * default. Also allows for ad-hoc logging module loading given the module is a winston
  * compaitible class.
- * ## Alice Log
- * A multi transport logging package for the alice platform. The logger can support any logger the implements the [winston](https://www.npmjs.org/package/winston) logging interface. Out of the box the logging package supports `file` transports for a log file that will get rotated every day, `stdout` which simply dumps all logs to the host computers stdout, and `syslog` which attempts to send logs to a running syslog server over udp.
+ * ## hive Log
+ * A multi transport logging package for the hive platform. The logger can support any logger the implements the [winston](https://www.npmjs.org/package/winston) logging interface. Out of the box the logging package supports `file` transports for a log file that will get rotated every day, `stdout` which simply dumps all logs to the host computers stdout, and `syslog` which attempts to send logs to a running syslog server over udp.
  *
  * ### Configuration
  *
- * Logging options are set using the alice conf package so you can set you logging options as you would everything else. You use the `--logger` or `-l` the flag can be passed mutliple times to specify multiple transports. There is always an exception transport called `stderr` in the config that will always write to stdout For example, if you wanted to log to syslog, but also get feedback from stdout:
+ * Logging options are set using the hive conf package so you can set you logging options as you would everything else. You use the `--logger` or `-l` the flag can be passed mutliple times to specify multiple transports. There is always an exception transport called `stderr` in the config that will always write to stdout For example, if you wanted to log to syslog, but also get feedback from stdout:
  *
  * ```sh
  * node server.js --logger=stdout --logger=syslog
@@ -39,7 +39,7 @@
  *
  *
  * ```
- * var logger = require('alice-log')
+ * var logger = require('hive-log')
  * logger.http('hello world')
  * logger.debug('hello world')
  * logger.info('hello world')
@@ -55,7 +55,7 @@
  * The loggers suppport the same formatting options and Node's [util](http://nodejs.org/api/util.html#util_util_format_format) module.
  *
  * ```js
- * var logger = require('alice-log');
+ * var logger = require('hive-log');
  *
  * logger.debug('Hi, %s, my name is %', "Bill", variable)
  * ```
@@ -63,31 +63,31 @@
  * The last argument to any of the log method can be a serialiable object and it will be included in the log data in an appropriate format.
  *
  * ```js
- * var logger = require('alice-log');
+ * var logger = require('hive-log');
  *
  * logger.debug("Dude, I just got some %s data", 'crazy', {key:'value'} )
  * ```
- * @module alice-log
+ * @module hive-log
  * @author Eric Satterwhite
  * @since 0.1.0
- * @requires alice-conf
+ * @requires hive-conf
  * @requires winston
  * @requires path
  * @requires util
  * @requires domain
  * @requires events
- * @requires alice-stdlib/array
- * @requires alice-stdlib/lang
+ * @requires hive-stdlib/array
+ * @requires hive-stdlib/lang
  */
 
 var winston      = require( 'winston' )                  // winston logging module
-  , conf         = require( 'alice-conf' )               // configuration package for alice
+  , conf         = require( 'hive-conf' )               // configuration package for hive
   , path         = require('path')                       // node path module
   , util         = require('util')                       // node util module
   , domain       = require( 'domain' )                   // node domain module
   , events       = require( 'events' )                   // node events module
-  , compact      = require('alice-stdlib/array').compact // mout compact module 
-  , toArray      = require('alice-stdlib/lang').toArray  // mout compact module
+  , compact      = require('hive-stdlib/array').compact // mout compact module 
+  , toArray      = require('hive-stdlib/lang').toArray  // mout compact module
   , loggerdomain = domain.create()                       // domain object for logging
   , loggers      = []                                    // container to hold logger objects loaded
   , log_types                                            // typs of loggers to enable, captured from config
@@ -104,11 +104,11 @@ var winston      = require( 'winston' )                  // winston logging modu
   , DEBUG                                                // Flag to enable stdout logging
   ;
 
-log        = conf.get('log');
+log        = conf.get('log')
 log_types  = conf.get('logger');
 log_types  = compact( toArray( log_types ) );
 log_dir    = log.file.dir;
-stderr_log = path.join(log_dir,'alice.error.log');
+stderr_log = path.join(log_dir,'hive.error.log');
 emitter    = new events.EventEmitter();
 
 levels = {
@@ -116,7 +116,7 @@ levels = {
 	 * Logs a message at the emerg log level
 	 * @static
 	 * @function emerg
-	 * @memberof module:alice-log
+	 * @memberof module:hive-log
 	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
@@ -126,7 +126,7 @@ levels = {
 	 * Logs a message at the alert log level
 	 * @static
 	 * @function alert
-	 * @memberof module:alice-log
+	 * @memberof module:hive-log
 	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
@@ -136,7 +136,7 @@ levels = {
 	 * Logs a message at the crit log level
 	 * @static
 	 * @function crit
-	 * @memberof module:alice-log
+	 * @memberof module:hive-log
 	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
@@ -146,7 +146,7 @@ levels = {
 	 * Logs a message at the error log level
 	 * @static
 	 * @function error
-	 * @memberof module:alice-log
+	 * @memberof module:hive-log
 	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
@@ -156,7 +156,7 @@ levels = {
 	 * Logs a message at the warning log level
 	 * @static
 	 * @function warning
-	 * @memberof module:alice-log
+	 * @memberof module:hive-log
 	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
@@ -166,7 +166,7 @@ levels = {
 	 * Logs a message at the notice log level
 	 * @static
 	 * @function notice
-	 * @memberof module:alice-log
+	 * @memberof module:hive-log
 	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
@@ -176,7 +176,7 @@ levels = {
 	 * Logs a message at the info log level
 	 * @static
 	 * @function info
-	 * @memberof module:alice-log
+	 * @memberof module:hive-log
 	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
@@ -186,7 +186,7 @@ levels = {
 	 * Logs a message at the debug log level
 	 * @static
 	 * @function debug
-	 * @memberof module:alice-log
+	 * @memberof module:hive-log
 	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message 
@@ -196,7 +196,7 @@ levels = {
 	 * Logs a message at the http log level
 	 * @static
 	 * @function http
-	 * @memberof module:alice-log
+	 * @memberof module:hive-log
 	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
@@ -255,7 +255,7 @@ loggerdomain.on('error', function( err ){
 loggerdomain.run( function(){
 	logger = new (winston.Logger)({
 		transports:loggers,
-		exceptionHandlers: !process.env.ALICE_RUNNER ? exceptionloggers : null,
+		exceptionHandlers: !process.env.hive_RUNNER ? exceptionloggers : null,
 		addColors:true,
 		levels:levels,
 		colors:colors,
@@ -265,8 +265,8 @@ loggerdomain.run( function(){
 
 /**
  * Loggs a message at the debug log level
- * @namespace module:alice-log.exception
- * @memberof module:alice-log
+ * @namespace module:hive-log.exception
+ * @memberof module:hive-log
  */
 logger.exception = winston.exception;
 
@@ -274,7 +274,7 @@ logger.exception = winston.exception;
  * Generates a More readible and parseable stack trace
  * @function getTrace
  * @param {Error} error An error object to generate a more readible stack trace from
- * @memberof module:alice-log.exception
+ * @memberof module:hive-log.exception
  * @returns {Array} an array of object where each object is a line in the stack trace
  */
 
@@ -282,14 +282,14 @@ logger.exception = winston.exception;
 /**
  * Returns current os information
  * @function getOsInfo
- * @memberof module:alice-log.exception
+ * @memberof module:hive-log.exception
  * @returns {Object} Os information containing `loadavg` and `uptime`
  */
 
  /**
  * Os stats includeing `pid`,`uid`, `gid`, `cwd`, `execPath`, `version`, `argv`, and `memoryUsage`
  * @function getProcessInfo
- * @memberof module:alice-log.exception
+ * @memberof module:hive-log.exception
  * @returns an object containing current OS stats
  */
 
