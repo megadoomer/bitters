@@ -80,12 +80,12 @@
  * @requires hive-stdlib/lang
  */
 
-var winston      = require( 'winston' )                  // winston logging module
-  , conf         = require( 'hive-conf' )               // configuration package for hive
+var winston      = require( 'winston' )                  // winston logging module             // configuration package for hive
   , path         = require('path')                       // node path module
   , util         = require('util')                       // node util module
   , domain       = require( 'domain' )                   // node domain module
   , events       = require( 'events' )                   // node events module
+  , conf         = require( 'hive-conf' )               // configuration package for alice
   , compact      = require('hive-stdlib/array').compact // mout compact module 
   , toArray      = require('hive-stdlib/lang').toArray  // mout compact module
   , loggerdomain = domain.create()                       // domain object for logging
@@ -255,7 +255,7 @@ loggerdomain.on('error', function( err ){
 loggerdomain.run( function(){
 	logger = new (winston.Logger)({
 		transports:loggers,
-		exceptionHandlers: !process.env.hive_RUNNER ? exceptionloggers : null,
+		exceptionHandlers: !process.env.HIVE_RUNNER ? exceptionloggers : null,
 		addColors:true,
 		levels:levels,
 		colors:colors,
