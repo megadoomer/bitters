@@ -81,13 +81,13 @@
  */
 
 var winston      = require( 'winston' )                  // winston logging module
-  , conf         = require( 'alice-conf' )               // configuration package for alice
   , path         = require('path')                       // node path module
   , util         = require('util')                       // node util module
   , domain       = require( 'domain' )                   // node domain module
   , events       = require( 'events' )                   // node events module
-  , compact      = require('alice-stdlib/array').compact // mout compact module 
-  , toArray      = require('alice-stdlib/lang').toArray  // mout compact module
+  , conf         = require( 'hive-conf' )               // configuration package for alice
+  , compact      = require('hive-stdlib/array').compact // mout compact module 
+  , toArray      = require('hive-stdlib/lang').toArray  // mout compact module
   , loggerdomain = domain.create()                       // domain object for logging
   , loggers      = []                                    // container to hold logger objects loaded
   , log_types                                            // typs of loggers to enable, captured from config
