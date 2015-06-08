@@ -18,7 +18,9 @@
     "hive-stdlib": "^0.1.0"
   },
   "bundledDependencies": [
-    "winston"
+    "winston",
+    "hive-conf",
+	"hive-stdlib"
   ],
   "dependencies": {
     "winston": "~0.8.0"
