@@ -1,14 +1,18 @@
 {
-  "name": "hive-log",
+  "name": "bitters",
   "version": "0.1.0",
   "description": "Multi transport logging for hive",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bugs":"https://bitbucket.org/team-umbrella/hive-log/issues",
+  "bugs":"https://bitbucket.org/megadoomer/bitters/issues",
   "author": "Eric Satterwhite",
   "license": "MIT",
+  "repository":{
+  	"type":"git",
+	"url":"git@bitbucket.org:megadoomer/bitters.git"
+  },
   "peerDependencies": {
     "hive-conf": "^0.1.0",
     "hive-stdlib": "^0.1.0"

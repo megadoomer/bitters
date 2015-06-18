@@ -1,4 +1,4 @@
-## hive Log
+## Bitters
 A multi transport logging package for the hive platform. The logger can support any logger the implements the [winston](https://www.npmjs.org/package/winston) logging interface. Out of the box the logging package supports `file` transports for a log file that will get rotated every day, `stdout` which simply dumps all logs to the host computers stdout, and `syslog` which attempts to send logs to a running syslog server over udp.
 
 ### Configuration
