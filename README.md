@@ -48,7 +48,7 @@ logger.emerg('hello world')
 The loggers suppport the same formatting options and Node's [util](http://nodejs.org/api/util.html#util_util_format_format) module.
 
 ```js
-var logger = require('hive-log');
+var logger = require('bitters');
 
 logger.debug('Hi, %s, my name is %', "Bill", variable)
 ```
@@ -56,7 +56,7 @@ logger.debug('Hi, %s, my name is %', "Bill", variable)
 The last argument to any of the log method can be a serialiable object and it will be included in the log data in an appropriate format.
 
 ```js
-var logger = require('hive-log');
+var logger = require('bitters');
 
 logger.debug("Dude, I just got some %s data", 'crazy', {key:'value'} )
 ```
