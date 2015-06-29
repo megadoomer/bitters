@@ -14,17 +14,17 @@
 	"url":"git@bitbucket.org:megadoomer/bitters.git"
   },
   "peerDependencies": {
-    "hive-conf": "^0.1.0",
-    "hive-stdlib": "^0.1.0"
+    "keef": "^0.1.0",
+    "gaz": "^0.1.0"
   },
   "devDependencies": {
-    "hive-conf": "^0.1.0",
-    "hive-stdlib": "^0.1.0"
+    "keef": "^0.1.0",
+    "gaz": "^0.1.0"
   },
   "bundledDependencies": [
     "winston",
-    "hive-conf",
-	"hive-stdlib"
+    "keef",
+	"gaz"
   ],
   "dependencies": {
     "winston": "~0.8.0"
