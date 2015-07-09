@@ -70,14 +70,14 @@
  * @module hive-log
  * @author Eric Satterwhite
  * @since 0.1.0
- * @requires hive-conf
+ * @requires keef
  * @requires winston
  * @requires path
  * @requires util
  * @requires domain
  * @requires events
- * @requires hive-stdlib/array
- * @requires hive-stdlib/lang
+ * @requires gaz/array
+ * @requires gaz/lang
  */
 
 var winston      = require( 'winston' )                  // winston logging module             // configuration package for hive
@@ -85,9 +85,9 @@ var winston      = require( 'winston' )                  // winston logging modu
   , util         = require('util')                       // node util module
   , domain       = require( 'domain' )                   // node domain module
   , events       = require( 'events' )                   // node events module
-  , conf         = require( 'hive-conf' )               // configuration package for alice
-  , compact      = require('hive-stdlib/array').compact // mout compact module 
-  , toArray      = require('hive-stdlib/lang').toArray  // mout compact module
+  , conf         = require( 'keef' )               // configuration package for alice
+  , compact      = require('gaz/array').compact // mout compact module 
+  , toArray      = require('gaz/lang').toArray  // mout compact module
   , loggerdomain = domain.create()                       // domain object for logging
   , loggers      = []                                    // container to hold logger objects loaded
   , log_types                                            // typs of loggers to enable, captured from config
