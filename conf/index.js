@@ -12,7 +12,15 @@
 var util = require('util')
   , path = require('path')
   , os   = require('os')
+  , findup = require('findup-sync')
+  , pkgpath
+  , name
   ;
+
+// be more forgiving when looking for a package file
+pkgpath =  findup('package.json', {cwd: path.join(__dirname,'..', '..', '..') , nocase: true}) 
+pkgpath = pkgpath || findup('package.json');
+name = ( require(pkgpath) ).name;
 
 module.exports = {
     /**
@@ -36,7 +44,7 @@ module.exports = {
     log:{
 
         stdout:{
-            label: util.format( "hive ( %s ) %s", os.hostname(), process.pid )
+            label: util.format( "%s ( %s ) %s", name , os.hostname(), process.pid )
             , prettyPrint:true
             , colorize:true
             , exitOnError:false
@@ -45,7 +53,7 @@ module.exports = {
         }
 
         ,stderr:{
-            label: util.format( "hive ( %s ) %s", os.hostname(), process.pid )
+            label: util.format( "%s ( %s ) %s", name , os.hostname(), process.pid )
             , prettyPrint:true
             , colorize:true
             , handleExceptions: true
@@ -67,7 +75,7 @@ module.exports = {
 
 
         ,file:{
-            label: util.format( "hive ( %s ) %s", os.hostname(), process.pid )
+            label: util.format( "%s ( %s ) %s", name , os.hostname(), process.pid )
             , dir:"."
             , filename: path.join( process.cwd(), 'hive.log' )
             , prettyPrint:false
