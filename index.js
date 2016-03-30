@@ -121,7 +121,7 @@ levels = {
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
 	 */
-	emerg: 8,
+	emerg: 0,
 	/**
 	 * Logs a message at the alert log level
 	 * @static
@@ -131,7 +131,7 @@ levels = {
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
 	 */
-	alert: 7,
+	alert: 1,
 	/**
 	 * Logs a message at the crit log level
 	 * @static
@@ -141,7 +141,7 @@ levels = {
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
 	 */
-	crit: 6,
+	crit: 2,
 	/**
 	 * Logs a message at the error log level
 	 * @static
@@ -151,7 +151,7 @@ levels = {
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
 	 */
-	error: 5,
+	error: 3,
 	/**
 	 * Logs a message at the warning log level
 	 * @static
@@ -171,7 +171,7 @@ levels = {
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
 	 */
-	notice: 3,
+	notice: 5,
 	/**
 	 * Logs a message at the info log level
 	 * @static
@@ -181,7 +181,7 @@ levels = {
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
 	 */
-	info: 2,
+	info: 6,
 	/**
 	 * Logs a message at the debug log level
 	 * @static
@@ -191,7 +191,7 @@ levels = {
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message 
 	 */
-	debug: 1,
+	debug: 7,
 	/**
 	 * Logs a message at the http log level
 	 * @static
@@ -201,7 +201,7 @@ levels = {
 	 * @param {...String} [params] additional params to be passed through as psositional format arguments
 	 * @param {Object} [meta] any additional data you wish to store with the message
 	 */
-	http: 0
+	http: 8
 }
 
 colors = {
@@ -209,11 +209,11 @@ colors = {
 	alert: 'yellow',
 	crit: 'red',
 	error: 'red',
-	warning: 'red',
+	warning: 'yellow',
 	notice: 'yellow',
 	info: 'green',
-	debug: 'blue',
-	http: 'cyan'
+	debug: 'grey',
+	http: 'magenta'
 }
 
 // try to resolve a module to load a
