@@ -39,7 +39,7 @@
  *
  *
  * ```
- * var logger = require('hive-log')
+ * var logger = require('bitters')
  * logger.http('hello world')
  * logger.debug('hello world')
  * logger.info('hello world')
@@ -55,7 +55,7 @@
  * The loggers suppport the same formatting options and Node's [util](http://nodejs.org/api/util.html#util_util_format_format) module.
  *
  * ```js
- * var logger = require('hive-log');
+ * var logger = require('bitters');
  *
  * logger.debug('Hi, %s, my name is %', "Bill", variable)
  * ```
@@ -67,7 +67,7 @@
  *
  * logger.debug("Dude, I just got some %s data", 'crazy', {key:'value'} )
  * ```
- * @module hive-log
+ * @module bitters
  * @author Eric Satterwhite
  * @since 0.1.0
  * @requires keef
@@ -108,7 +108,7 @@ log        = conf.get('log')
 log_types  = conf.get('logger');
 log_types  = compact( toArray( log_types ) );
 log_dir    = log.file.dir;
-stderr_log = path.join(log_dir,'hive.error.log');
+stderr_log = path.join(log_dir,`keef.get('pkg:name').error.log`);
 emitter    = new events.EventEmitter();
 
 levels = {
