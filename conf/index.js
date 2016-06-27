@@ -66,8 +66,8 @@ module.exports = {
         ,syslog:{
              host:"localhost"
             ,port:undefined
-            ,app:process.title || 'hive:log'
-            ,identity:process.title || 'hive:log'
+            ,app:process.title || name + ':log'
+            ,identity:process.title || name + ':log'
             ,protocol:'udp4'
             ,type:"BSD"
             ,facility:"local0"
@@ -77,7 +77,7 @@ module.exports = {
         ,file:{
             label: util.format( "%s ( %s ) %s", name , os.hostname(), process.pid )
             , dir:"."
-            , filename: path.join( process.cwd(), 'hive.log' )
+            , filename: path.join( process.cwd(), name + '.log' )
             , prettyPrint:false
             , level:"http"
             , json: false

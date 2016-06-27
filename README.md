@@ -32,7 +32,7 @@ The logging package exports a fully configured winston interface that supports s
 
 
 ```js
-var logger = require('hive-log')
+var logger = require('bitters')
 logger.http('hello world')
 logger.debug('hello world')
 logger.info('hello world')

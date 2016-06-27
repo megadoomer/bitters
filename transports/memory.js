@@ -1,13 +1,12 @@
 /*jshint node:true, laxcomma: true, smarttabs: true*/
 'use strict';
 /**
- * Winstons stdout / console transport
- * @module module:hive-log/transports/stdout
+ * Winstons in memory / no-op transport
+ * @module module:hive-log/transports/memory
  * @author Eric Satterwhite
  * @since 0.1.0
  * @requires winston
- * @requires winston-syslog
  */
 
 var winston = require( 'winston' );
-module.exports = winston.transports.Console;
+module.exports = winston.transports.Memmory;
