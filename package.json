@@ -14,12 +14,12 @@
     "url": "git@bitbucket.org:megadoomer/bitters.git"
   },
   "peerDependencies": {
-    "keef": "^0.1.0",
-    "gaz": "^0.1.0"
+    "keef": ">=1.0.0",
+    "gaz": "^1.0.0"
   },
   "devDependencies": {
-    "keef": "^0.1.0",
-    "gaz": "^0.1.0"
+    "keef": "^1.0.0",
+    "gaz": "^1.0.0"
   },
   "bundledDependencies": [
     "winston",
