@@ -29,8 +29,5 @@
   "dependencies": {
     "findup-sync": "^0.3.0",
     "winston": "^2.2.0"
-  },
-  "optionalDependencies": {
-    "winston-posix-syslog": "0.0.7"
   }
 }
