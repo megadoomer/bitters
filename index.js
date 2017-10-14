@@ -112,161 +112,161 @@ stderr_log = path.join(log_dir,`keef.get('pkg:name').error.log`);
 emitter    = new events.EventEmitter();
 
 levels = {
-	/**
-	 * Logs a message at the emerg log level
-	 * @static
-	 * @function emerg
-	 * @memberof module:hive-log
-	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
-	 * @param {...String} [params] additional params to be passed through as psositional format arguments
-	 * @param {Object} [meta] any additional data you wish to store with the message
-	 */
-	emerg: 0,
-	/**
-	 * Logs a message at the alert log level
-	 * @static
-	 * @function alert
-	 * @memberof module:hive-log
-	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
-	 * @param {...String} [params] additional params to be passed through as psositional format arguments
-	 * @param {Object} [meta] any additional data you wish to store with the message
-	 */
-	alert: 1,
-	/**
-	 * Logs a message at the crit log level
-	 * @static
-	 * @function crit
-	 * @memberof module:hive-log
-	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
-	 * @param {...String} [params] additional params to be passed through as psositional format arguments
-	 * @param {Object} [meta] any additional data you wish to store with the message
-	 */
-	crit: 2,
-	/**
-	 * Logs a message at the error log level
-	 * @static
-	 * @function error
-	 * @memberof module:hive-log
-	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
-	 * @param {...String} [params] additional params to be passed through as psositional format arguments
-	 * @param {Object} [meta] any additional data you wish to store with the message
-	 */
-	error: 3,
-	/**
-	 * Logs a message at the warning log level
-	 * @static
-	 * @function warning
-	 * @memberof module:hive-log
-	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
-	 * @param {...String} [params] additional params to be passed through as psositional format arguments
-	 * @param {Object} [meta] any additional data you wish to store with the message
-	 */
-	warning: 4,
-	/**
-	 * Logs a message at the notice log level
-	 * @static
-	 * @function notice
-	 * @memberof module:hive-log
-	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
-	 * @param {...String} [params] additional params to be passed through as psositional format arguments
-	 * @param {Object} [meta] any additional data you wish to store with the message
-	 */
-	notice: 5,
-	/**
-	 * Logs a message at the info log level
-	 * @static
-	 * @function info
-	 * @memberof module:hive-log
-	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
-	 * @param {...String} [params] additional params to be passed through as psositional format arguments
-	 * @param {Object} [meta] any additional data you wish to store with the message
-	 */
-	info: 6,
-	/**
-	 * Logs a message at the debug log level
-	 * @static
-	 * @function debug
-	 * @memberof module:hive-log
-	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
-	 * @param {...String} [params] additional params to be passed through as psositional format arguments
-	 * @param {Object} [meta] any additional data you wish to store with the message 
-	 */
-	debug: 7,
-	/**
-	 * Logs a message at the http log level
-	 * @static
-	 * @function http
-	 * @memberof module:hive-log
-	 * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
-	 * @param {...String} [params] additional params to be passed through as psositional format arguments
-	 * @param {Object} [meta] any additional data you wish to store with the message
-	 */
-	http: 8
+  /**
+   * Logs a message at the emerg log level
+   * @static
+   * @function emerg
+   * @memberof module:bitters
+   * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
+   * @param {...String} [params] additional params to be passed through as psositional format arguments
+   * @param {Object} [meta] any additional data you wish to store with the message
+   */
+  emerg: 0,
+  /**
+   * Logs a message at the alert log level
+   * @static
+   * @function alert
+   * @memberof module:bitters
+   * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
+   * @param {...String} [params] additional params to be passed through as psositional format arguments
+   * @param {Object} [meta] any additional data you wish to store with the message
+   */
+  alert: 1,
+  /**
+   * Logs a message at the crit log level
+   * @static
+   * @function crit
+   * @memberof module:bitters
+   * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
+   * @param {...String} [params] additional params to be passed through as psositional format arguments
+   * @param {Object} [meta] any additional data you wish to store with the message
+   */
+  crit: 2,
+  /**
+   * Logs a message at the error log level
+   * @static
+   * @function error
+   * @memberof module:bitters
+   * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
+   * @param {...String} [params] additional params to be passed through as psositional format arguments
+   * @param {Object} [meta] any additional data you wish to store with the message
+   */
+  error: 3,
+  /**
+   * Logs a message at the warning log level
+   * @static
+   * @function warning
+   * @memberof module:bitters
+   * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
+   * @param {...String} [params] additional params to be passed through as psositional format arguments
+   * @param {Object} [meta] any additional data you wish to store with the message
+   */
+  warning: 4,
+  /**
+   * Logs a message at the notice log level
+   * @static
+   * @function notice
+   * @memberof module:bitters
+   * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
+   * @param {...String} [params] additional params to be passed through as psositional format arguments
+   * @param {Object} [meta] any additional data you wish to store with the message
+   */
+  notice: 5,
+  /**
+   * Logs a message at the info log level
+   * @static
+   * @function info
+   * @memberof module:bitters
+   * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
+   * @param {...String} [params] additional params to be passed through as psositional format arguments
+   * @param {Object} [meta] any additional data you wish to store with the message
+   */
+  info: 6,
+  /**
+   * Logs a message at the debug log level
+   * @static
+   * @function debug
+   * @memberof module:bitters
+   * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
+   * @param {...String} [params] additional params to be passed through as psositional format arguments
+   * @param {Object} [meta] any additional data you wish to store with the message 
+   */
+  debug: 7,
+  /**
+   * Logs a message at the http log level
+   * @static
+   * @function http
+   * @memberof module:bitters
+   * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
+   * @param {...String} [params] additional params to be passed through as psositional format arguments
+   * @param {Object} [meta] any additional data you wish to store with the message
+   */
+  http: 8
 }
 
 colors = {
-	emerg: 'red',
-	alert: 'red',
-	crit: 'red',
-	error: 'red',
-	warning: 'yellow',
-	notice: 'yellow',
-	info: 'green',
-	debug: 'grey',
-	http: 'magenta'
+  emerg: 'red',
+  alert: 'red',
+  crit: 'red',
+  error: 'red',
+  warning: 'yellow',
+  notice: 'yellow',
+  info: 'green',
+  debug: 'grey',
+  http: 'magenta'
 }
 
 // try to resolve a module to load a
 // logging backend
 log_types.forEach(function( type ){
-	var backend = null // the backend we are about to load
-	  , backendconf    // derived configuration for the logging backend
-	  , e;			   // potention error
-	try{
-		backend = require("./transports/" + type )
-	} catch( err ){
-		backendconf = conf.get( type );
-		if( backendconf && backendconf.module ){
-			backend = require( backendconf.module );
-		} else{
-			e = new Error();
-			e.name="InvalidLogType";
-			e.message = util.format( "unable to load logging module %s", type);
-			emitter.emit('error', e);
-		}
-	}
-	if( backend ){
-		loggers.push( new backend( log[ type ] ) );
-	}
+  var backend = null // the backend we are about to load
+    , backendconf    // derived configuration for the logging backend
+    , e;         // potention error
+  try{
+    backend = require("./transports/" + type )
+  } catch( err ){
+    backendconf = conf.get( type );
+    if( backendconf && backendconf.module ){
+      backend = require( backendconf.module );
+    } else{
+      e = new Error();
+      e.name="InvalidLogType";
+      e.message = util.format( "unable to load logging module %s", type);
+      emitter.emit('error', e);
+    }
+  }
+  if( backend ){
+    loggers.push( new backend( log[ type ] ) );
+  }
 })
 
 
 exceptionloggers = [
-	new winston.transports.Console( conf.get('log:stderr') )
+  new winston.transports.Console( conf.get('log:stderr') )
 ];
 
 
 loggerdomain.on('error', function( err ){
-	process.stderr.write("problem writing to log %s\n %s", err.message, err.stack )
+  process.stderr.write("problem writing to log %s\n %s", err.message, err.stack )
 });
 
 
 // run the loggers under a domain
 loggerdomain.run( function(){
-	logger = new (winston.Logger)({
-		transports:loggers,
-		exceptionHandlers: !process.env.HIVE_RUNNER ? exceptionloggers : null,
-		addColors:true,
-		levels:levels,
-		colors:colors,
-		padLevels:true
-	});
+  logger = new (winston.Logger)({
+    transports:loggers,
+    exceptionHandlers: !process.env.HIVE_RUNNER ? exceptionloggers : null,
+    addColors:true,
+    levels:levels,
+    colors:colors,
+    padLevels:true
+  });
 });
 
 /**
  * Loggs a message at the debug log level
- * @namespace module:hive-log.exception
- * @memberof module:hive-log
+ * @namespace module:bitters.exception
+ * @memberof module:bitters
  */
 logger.exception = winston.exception;
 
@@ -274,7 +274,7 @@ logger.exception = winston.exception;
  * Generates a More readible and parseable stack trace
  * @function getTrace
  * @param {Error} error An error object to generate a more readible stack trace from
- * @memberof module:hive-log.exception
+ * @memberof module:bitters.exception
  * @returns {Array} an array of object where each object is a line in the stack trace
  */
 
@@ -282,14 +282,14 @@ logger.exception = winston.exception;
 /**
  * Returns current os information
  * @function getOsInfo
- * @memberof module:hive-log.exception
+ * @memberof module:bitters.exception
  * @returns {Object} Os information containing `loadavg` and `uptime`
  */
 
  /**
  * Os stats includeing `pid`,`uid`, `gid`, `cwd`, `execPath`, `version`, `argv`, and `memoryUsage`
  * @function getProcessInfo
- * @memberof module:hive-log.exception
+ * @memberof module:bitters.exception
  * @returns an object containing current OS stats
  */
 
