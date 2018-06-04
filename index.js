@@ -1,6 +1,6 @@
 /*jshint laxcomma: true, smarttabs: true*/
 /*globals module,process,require */
-'use strict';
+'use strict'
 /**
  * primary logging harness for hive. Profides stdout, file and syslog logging by
  * default. Also allows for ad-hoc logging module loading given the module is a winston
@@ -55,7 +55,7 @@
  * The loggers suppport the same formatting options and Node's [util](http://nodejs.org/api/util.html#util_util_format_format) module.
  *
  * ```js
- * var logger = require('bitters');
+ * var logger = require('bitters')
  *
  * logger.debug('Hi, %s, my name is %', "Bill", variable)
  * ```
@@ -63,7 +63,7 @@
  * The last argument to any of the log method can be a serialiable object and it will be included in the log data in an appropriate format.
  *
  * ```js
- * var logger = require('hive-log');
+ * var logger = require('hive-log')
  *
  * logger.debug("Dude, I just got some %s data", 'crazy', {key:'value'} )
  * ```
@@ -73,43 +73,31 @@
  * @requires keef
  * @requires winston
  * @requires path
- * @requires util
  * @requires domain
  * @requires events
  * @requires gaz/array
  * @requires gaz/lang
  */
 
-var winston      = require( 'winston' )                  // winston logging module             // configuration package for hive
-  , path         = require('path')                       // node path module
-  , util         = require('util')                       // node util module
-  , domain       = require( 'domain' )                   // node domain module
-  , events       = require( 'events' )                   // node events module
-  , conf         = require( 'keef' )               // configuration package for alice
-  , compact      = require('gaz/array').compact // mout compact module 
-  , toArray      = require('gaz/lang').toArray  // mout compact module
-  , loggerdomain = domain.create()                       // domain object for logging
-  , loggers      = []                                    // container to hold logger objects loaded
-  , log_types                                            // typs of loggers to enable, captured from config
-  , levels                                               // Syslog log levels
-  , colors                                               // colors map for log levels
-  , exceptionloggers                                     // logger to deal with errors specifically
-  , loggerdomain                                         // Domain for logging to run under
-  , logger                                               // the logger object to be exported
-  , emitter                                              // error emitter for logging domin
-  , log                                                  // logging configuration
-  , cli                                                  // stdout logging object
-  , log_dir                                              // directory to dump log files
-  , stderr_log                                           // path for error logs
-  , DEBUG                                                // Flag to enable stdout logging
-  ;
+var winston = require('winston')
+  , path = require('path')
+  , util = require('util')
+  , domain = require('domain')
+  , conf = require('keef')
+  , {compact} = require('gaz/array')
+  , {toArray} = require('gaz/lang')
+  , loggerdomain = domain.create()
+  , loggers = []
+  , log_types
+  , levels
+  , colors
+  , exceptionloggers
+  , logger
+  , log
 
 log        = conf.get('log')
-log_types  = conf.get('logger');
-log_types  = compact( toArray( log_types ) );
-log_dir    = log.file.dir;
-stderr_log = path.join(log_dir,`keef.get('pkg:name').error.log`);
-emitter    = new events.EventEmitter();
+log_types  = conf.get('logger')
+log_types  = compact(toArray(typeof log_types === 'string' ? log_types.split(/(?:\s+)?,(?:\s+)?/) : log_types))
 
 levels = {
   /**
@@ -189,7 +177,7 @@ levels = {
    * @memberof module:bitters
    * @param {String} message The message to log. Can contain positional string formatting params `%s`, `%d`, `%j`
    * @param {...String} [params] additional params to be passed through as psositional format arguments
-   * @param {Object} [meta] any additional data you wish to store with the message 
+   * @param {Object} [meta] any additional data you wish to store with the message
    */
   debug: 7,
   /**
@@ -205,70 +193,64 @@ levels = {
 }
 
 colors = {
-  emerg: 'red',
-  alert: 'red',
-  crit: 'red',
-  error: 'red',
-  warning: 'yellow',
-  notice: 'yellow',
-  info: 'green',
-  debug: 'grey',
-  http: 'magenta'
+  emerg: 'blackBG bold red'
+, alert: 'redBG white'
+, crit: 'bold yellow'
+, error: 'red'
+, warning: 'bold yellow'
+, notice: 'bold blue'
+, info: 'green'
+, debug: 'grey'
+, http: 'magenta'
 }
 
-// try to resolve a module to load a
-// logging backend
-log_types.forEach(function( type ){
-  var backend = null // the backend we are about to load
-    , backendconf    // derived configuration for the logging backend
-    , e;         // potention error
-  try{
-    backend = require("./transports/" + type )
-  } catch( err ){
-    backendconf = conf.get( type );
+for (const type of log_types) {
+  try {
+    var backend = require('./transports/' + type )
+  } catch (err) {
+    const backendconf = conf.get( type )
     if( backendconf && backendconf.module ){
-      backend = require( backendconf.module );
-    } else{
-      e = new Error();
-      e.name="InvalidLogType";
-      e.message = util.format( "unable to load logging module %s", type);
-      emitter.emit('error', e);
+      backend = require( backendconf.module )
+    } else {
+      const e = new Error()
+      e.name='InvalidLogType'
+      e.message = `unable to load logging module ${type}`
+      process.emit('error', e)
     }
   }
-  if( backend ){
-    loggers.push( new backend( log[ type ] ) );
-  }
-})
 
+  if (backend) {
+    loggers.push(new backend(log[type]))
+  }
+}
 
 exceptionloggers = [
   new winston.transports.Console( conf.get('log:stderr') )
-];
+]
 
-
-loggerdomain.on('error', function( err ){
-  process.stderr.write("problem writing to log %s\n %s", err.message, err.stack )
-});
+loggerdomain.on('error', ( err ) => {
+  process.stderr.write('problem writing to log %s\n %s', err.message, err.stack )
+})
 
 
 // run the loggers under a domain
 loggerdomain.run( function(){
   logger = new (winston.Logger)({
-    transports:loggers,
-    exceptionHandlers: !process.env.HIVE_RUNNER ? exceptionloggers : null,
-    addColors:true,
-    levels:levels,
-    colors:colors,
-    padLevels:true
-  });
-});
+    transports: loggers,
+    exceptionHandlers: !process.env.NODE_ENV === 'test' ? exceptionloggers : null,
+    addColors: true,
+    levels: levels,
+    colors: colors,
+    padLevels: true
+  })
 
-/**
- * Loggs a message at the debug log level
- * @namespace module:bitters.exception
- * @memberof module:bitters
- */
-logger.exception = winston.exception;
+  /**
+   * Loggs a message at the debug log level
+   * @namespace module:bitters.exception
+   * @memberof module:bitters
+   */
+  logger.exception = winston.exception
+})
 
 /**
  * Generates a More readible and parseable stack trace
@@ -293,4 +275,4 @@ logger.exception = winston.exception;
  * @returns an object containing current OS stats
  */
 
-module.exports = logger;
+module.exports = logger

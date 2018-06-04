@@ -25,7 +25,6 @@ name = ( require(pkgpath) ).name;
 module.exports = {
     /**
      * @property {Object} [log]
-     * @property {Object} [log.syslog]
      * @property {Object} [log.file] options for file logging transport
      * @property {Object} [log.file.label=hive ( `PID` )`HOST`] a prefix to tag each message with]
      * @property {String} [log.file.dir='.'] a path to a directory to store files
@@ -41,50 +40,26 @@ module.exports = {
      * @property {Boolean} [log.stdout.timestamp=true] true to tag every log message with a timestamp
      * @property {String} [log.stdout.level="info"] The Highest loglevel to record
      **/
-    log:{
+  log: {
 
-        stdout:{
-            label: util.format( "%s ( %s ) %s", name , os.hostname(), process.pid )
-            , prettyPrint:true
-            , colorize:true
-            , exitOnError:false
-            , timestamp:true
-            , level:"info"
-        }
+    stdout: {
+      label: util.format( '%s ( %s ) %s', name , os.hostname(), process.pid )
+    , prettyPrint: true
+    , colorize: true
+    , exitOnError: false
+    , timestamp: true
+    , level: 'info'
+    }
 
-        ,stderr:{
-            label: util.format( "%s ( %s ) %s", name , os.hostname(), process.pid )
-            , prettyPrint:true
-            , colorize:true
-            , handleExceptions: true
-            , exitOnError:false
-            , timestamp:true
-            , level:"error"
-            , json:false
-        }
-
-        ,syslog:{
-             host:"localhost"
-            ,port:undefined
-            ,app:process.title || name + ':log'
-            ,identity:process.title || name + ':log'
-            ,protocol:'udp4'
-            ,type:"BSD"
-            ,facility:"local0"
-        }
-
-
-        ,file:{
-            label: util.format( "%s ( %s ) %s", name , os.hostname(), process.pid )
-            , dir:"."
-            , filename: path.join( process.cwd(), name + '.log' )
-            , prettyPrint:false
-            , level:"http"
-            , json: false
-            , options:{
-                highWatermark:24
-                ,flags:'a'
-            }
-        }
-    }	
-};
+  , file: {
+      label: util.format( '%s ( %s ) %s', name , os.hostname(), process.pid )
+    , dir: '.'
+    , filename: path.join( process.cwd(), name + '.log' )
+    , pretty: false
+    , level: 'http'
+    , maxSize: '20m'
+    , maxFiles: '14d'
+    , zippedArchive: true
+    }
+  }
+}

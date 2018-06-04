@@ -13,21 +13,11 @@
     "type": "git",
     "url": "git@bitbucket.org:megadoomer/bitters.git"
   },
-  "peerDependencies": {
-    "keef": ">=1.0.0",
-    "gaz": "^1.0.0"
-  },
-  "devDependencies": {
-    "keef": "^1.0.0",
-    "gaz": "^1.0.0"
-  },
-  "bundledDependencies": [
-    "winston",
-    "keef",
-    "gaz"
-  ],
   "dependencies": {
-    "findup-sync": "^0.3.0",
-    "winston": "^2.2.0"
+    "findup-sync": "^2.0.0",
+    "gaz": "^1.1.1",
+    "keef": "^4.0.1",
+    "winston": "^2.4.2",
+    "winston-daily-rotate-file": "^3.2.1"
   }
 }

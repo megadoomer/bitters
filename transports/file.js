@@ -8,5 +8,6 @@
  * @requires winston
  */
 
-var winston = require( 'winston' );
-module.exports = winston.transports.DailyRotateFile;
+var winston = require('winston')
+require('winston-daily-rotate-file')
+module.exports = winston.transports.DailyRotateFile

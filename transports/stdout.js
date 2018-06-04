@@ -2,12 +2,11 @@
 'use strict';
 /**
  * Winstons stdout / console transport
- * @module module:hive-log/transports/stdout
+ * @module module:bitters/transports/stdout
  * @author Eric Satterwhite
  * @since 0.1.0
  * @requires winston
- * @requires winston-syslog
  */
 
-var winston = require( 'winston' );
-module.exports = winston.transports.Console;
+var winston = require( 'winston' )
+module.exports = winston.transports.Console
